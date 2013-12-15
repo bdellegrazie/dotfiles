@@ -83,6 +83,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-if [ -d "$HOME/.rvm/bin" ]; then
-  PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-fi
+# Add RVM wrappers to PATH for scripting
+[[ -d "$HOME/.rvm/bin" ]] && export PATH=$PATH:$HOME/.rvm/bin
+
