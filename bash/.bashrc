@@ -84,7 +84,8 @@ if ! shopt -oq posix; then
 fi
 
 # Add RVM wrappers to PATH for scripting
-[[ -d "$HOME/.rvm/bin" ]] && export PATH=$PATH:$HOME/.rvm/bin
+[[ -d "/usr/local/rvm/bin" ]] && export PATH="/usr/local/rvm/bin:$PATH"
+[[ -d "$HOME/.rvm/bin" ]] && export PATH="$HOME/.rvm/bin:$PATH"
 
 # Add rbenv to path
 [[ -d "$HOME/.rbenv/bin" ]] && {
