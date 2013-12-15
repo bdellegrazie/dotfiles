@@ -86,3 +86,9 @@ fi
 # Add RVM wrappers to PATH for scripting
 [[ -d "$HOME/.rvm/bin" ]] && export PATH=$PATH:$HOME/.rvm/bin
 
+# Add rbenv to path
+[[ -d "$HOME/.rbenv/bin" ]] && {
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+}
+
