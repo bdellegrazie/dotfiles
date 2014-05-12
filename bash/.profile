@@ -9,10 +9,10 @@
 #umask 022
 
 # set PATH so it includes user's private .local/bin if it exists
-[[ -d "$HOME/.local/bin" ]] && export PATH="$HOME/.local/bin:$PATH"
+[ -d "$HOME/.local/bin" ] && export PATH="$HOME/.local/bin:$PATH"
 
 # set PATH so it includes user's private bin if it exists
-[[ -d "$HOME/bin" ]] && export PATH="$HOME/bin:$PATH"
+[ -d "$HOME/bin" ] && export PATH="$HOME/bin:$PATH"
 
 # if running bash
 if [ -n "$BASH_VERSION" ]; then

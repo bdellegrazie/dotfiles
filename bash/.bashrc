@@ -85,13 +85,15 @@ if ! shopt -oq posix; then
 fi
 
 # Add RVM wrappers to PATH for scripting
-[[ -d "/usr/local/rvm/bin" ]] && export PATH="/usr/local/rvm/bin:$PATH"
-[[ -d "$HOME/.rvm/bin" ]] && export PATH="$HOME/.rvm/bin:$PATH"
+[ -d "/usr/local/rvm/bin" ] && export PATH="/usr/local/rvm/bin:$PATH"
+[ -d "$HOME/.rvm/bin" ] && export PATH="$HOME/.rvm/bin:$PATH"
 
 # Add rbenv to path
-[[ -d "$HOME/.rbenv/bin" ]] && {
+[ -d "$HOME/.rbenv/bin" ] && {
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 }
 
-[[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
+[ -s "$HOME/.gvm/scripts/gvm" ] && source "$HOME/.gvm/scripts/gvm"
+
+[ -d "$HOME/tools/apache-maven-3.2.1/bin" ] && export PATH=$PATH:$HOME/tools/apache-maven-3.2.1/bin
