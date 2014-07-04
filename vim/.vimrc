@@ -2,11 +2,18 @@ set nocompatible              " be iMproved
 filetype off                  " required!
 
 set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+call vundle#begin()
 
 " let Vundle manage Vundle
 " required! 
 Bundle 'gmarik/vundle'
+
+Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+Bundle 'saltstack/salt-vim'
+Bundle 'puppetlabs/puppet-syntax-vim'
+
+call vundle#end()             " required!
+filetype plugin indent on     " required!
 
 "
 " Brief help
@@ -17,10 +24,6 @@ Bundle 'gmarik/vundle'
 "
 " see :h vundle for more details or wiki for FAQ
 " NOTE: comments after Bundle commands are not allowed.
-
-Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
-
-filetype plugin indent on     " required!
 
 " Always show statusline
 set laststatus=2
