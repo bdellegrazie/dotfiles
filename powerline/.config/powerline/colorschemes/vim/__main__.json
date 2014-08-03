@@ -10,6 +10,12 @@
 		"file_directory":   "information:additional",
 		"file_name_empty":  "file_directory",
 		"line_percent":     "information:additional",
-		"position":         "information:additional"
+		"line_count":       "line_current",
+		"position":         "information:additional",
+		"single_tab":       "line_current",
+		"many_tabs":        "line_current",
+		"bufnr":            "information:unimportant",
+		"winnr":            "information:unimportant",
+		"tabnr":            "file_directory"
 	}
 }
