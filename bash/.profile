@@ -14,6 +14,9 @@
 # set PATH so it includes user's private bin if it exists
 [ -d "$HOME/bin" ] && export PATH="$HOME/bin:$PATH"
 
+# Add go if it exists
+[ -d "$HOME/tools/go" ] && export GOROOT=$HOME/tools/go PATH=$PATH:$HOME/tools/go/bin
+
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists
