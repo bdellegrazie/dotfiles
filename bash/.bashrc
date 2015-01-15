@@ -37,8 +37,13 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
 fi
 
 export TERM=xterm-256color
-powerline_cmd=$(which powerline)
+POWERLINE_DAEMON=$(which powerline-daemon)
 RESULT=$?
+if [ $RESULT -eq 0 ]; then
+  ${POWERLINE_DAEMON} -q
+  POWERLINE_BASH_CONTINUATION=1
+  POWERLINE_BASH_SELECT=1
+fi
 if [ $RESULT -eq 0 ] && [ -f ~/.vim/bundle/powerline/powerline/bindings/bash/powerline.sh ]; then
     source ~/.vim/bundle/powerline/powerline/bindings/bash/powerline.sh
 fi
