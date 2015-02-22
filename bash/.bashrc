@@ -101,4 +101,4 @@ eval "$(rbenv init -)"
 
 [ -s "$HOME/.gvm/scripts/gvm" ] && source "$HOME/.gvm/scripts/gvm"
 
-[ -d "$HOME/tools/apache-maven-3.2.3/bin" ] && export PATH=$PATH:$HOME/tools/apache-maven-3.2.3/bin
+[ -d "$HOME/tools/apache-maven-3.2.5/bin" ] && export PATH=$PATH:$HOME/tools/apache-maven-3.2.5/bin
