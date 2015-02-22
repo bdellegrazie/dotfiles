@@ -89,6 +89,12 @@ if ! shopt -oq posix; then
   fi
 fi
 
+DEBEMAIL="brett.dellegrazie@gmail.com"
+DEBFULLNAME="Brett Delle Grazie"
+export DEBEMAIL DEBFULLNAME
+alias dquilt="quilt --quiltrc=${HOME}/.quiltrc-dpkg"
+complete -F _quilt_completion $_quilt_complete_opt dquilt
+
 # Add RVM wrappers to PATH for scripting
 [ -d "/usr/local/rvm/bin" ] && export PATH="/usr/local/rvm/bin:$PATH"
 [ -d "$HOME/.rvm/bin" ] && export PATH="$HOME/.rvm/bin:$PATH"

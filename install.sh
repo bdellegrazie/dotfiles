@@ -11,7 +11,7 @@ mkdir -p ~/.fonts ~/.fonts.conf.d ~/.config/fontconfig/conf.d
 ln -sf ~/.vim/bundle/powerline/font/PowerlineSymbols.otf ~/.fonts/
 ln -sf ~/.vim/bundle/powerline/font/10-powerline-symbols.conf ~/.config/fontconfig/conf.d/
 ln -sf ~/.vim/bundle/powerline/font/10-powerline-symbols.conf ~/.fonts.conf.d/
-stow -t ~ bash tmux vim
+stow -t ~ bash quilt tmux vim
 stow -t ~/.config powerline/.config
 fc-cache -vf ~/.fonts
 
