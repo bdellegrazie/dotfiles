@@ -37,9 +37,9 @@ esac
 esac
 
 # Maven
-[ -d "$HOME/tools/apache-maven-3.2.5/bin" ] && case ":$PATH:" in
-  *":$HOME/tools/apache-maven-3.2.5/bin:"*) :;;
-  *) PATH="$PATH:$HOME/tools/apache-maven-3.2.5/bin" ;;
+[ -d "$HOME/tools/maven/bin" ] && case ":$PATH:" in
+  *":$HOME/tools/maven/bin:"*) :;;
+  *) PATH="$PATH:$HOME/tools/maven/bin" ;;
 esac
 
 # if running bash
