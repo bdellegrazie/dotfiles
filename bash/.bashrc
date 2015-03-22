@@ -95,16 +95,5 @@ export DEBEMAIL DEBFULLNAME
 alias dquilt="quilt --quiltrc=${HOME}/.quiltrc-dpkg"
 complete -F _quilt_completion $_quilt_complete_opt dquilt
 
-# Add RVM wrappers to PATH for scripting
-[ -d "/usr/local/rvm/bin" ] && export PATH="/usr/local/rvm/bin:$PATH"
-[ -d "$HOME/.rvm/bin" ] && export PATH="$HOME/.rvm/bin:$PATH"
-
-# Add rbenv to path
-[ -d "$HOME/.rbenv/bin" ] && {
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-}
-
-[ -s "$HOME/.gvm/scripts/gvm" ] && source "$HOME/.gvm/scripts/gvm"
-
-[ -d "$HOME/tools/apache-maven-3.2.5/bin" ] && export PATH=$PATH:$HOME/tools/apache-maven-3.2.5/bin
+PERL_MB_OPT="--install_base \"${HOME}/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=${HOME}/perl5"; export PERL_MM_OPT;
