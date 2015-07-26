@@ -43,9 +43,11 @@ if [ $RESULT -eq 0 ]; then
   ${POWERLINE_DAEMON} -q
   POWERLINE_BASH_CONTINUATION=1
   POWERLINE_BASH_SELECT=1
-fi
-if [ $RESULT -eq 0 ] && [ -f ~/.vim/bundle/powerline/powerline/bindings/bash/powerline.sh ]; then
+  if [ -f ~/.vim/bundle/powerline/powerline/bindings/bash/powerline.sh ]; then
     source ~/.vim/bundle/powerline/powerline/bindings/bash/powerline.sh
+  elif [ -f /usr/share/powerline/bindings/bash/powerline.sh ]; then
+    source /usr/share/powerline/bindings/bash/powerline.sh
+  fi
 fi
 
 # enable color support of ls and also add handy aliases

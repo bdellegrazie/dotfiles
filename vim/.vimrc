@@ -8,7 +8,7 @@ call vundle#begin()
 " required! 
 Bundle 'gmarik/vundle'
 
-Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+Bundle 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 Bundle 'saltstack/salt-vim'
 Bundle 'puppetlabs/puppet-syntax-vim'
 Bundle 'scrooloose/syntastic'
