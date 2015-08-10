@@ -1,7 +1,7 @@
 #!/bin/bash -x
 sudo apt-get install -y python-dev python-pip python-psutil stow git vim-nox
 sudo apt-get install -y libgit2-dev
-git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 pip install --user --editable git+https://github.com/powerline/powerline.git#egg=powerline --source ~/.vim/bundle
 vim +BundleInstall +qall
 LIBGIT2VER=$(dpkg-query --showformat='${source:Version}\n' --show libgit2-0)
