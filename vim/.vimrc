@@ -9,8 +9,8 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
-Plugin 'saltstack/salt-vim'
 Plugin 'puppetlabs/puppet-syntax-vim'
+Plugin 'saltstack/salt-vim'
 Plugin 'scrooloose/syntastic'
 
 call vundle#end()             " required!
@@ -26,8 +26,9 @@ filetype plugin indent on     " required!
 " see :h vundle for more details or wiki for FAQ
 " NOTE: comments after Bundle commands are not allowed.
 
-" Always show statusline
-set laststatus=2
+set laststatus=2 " Always display the statusline in all windows
+set showtabline=2 " Always display the tabline, even if there is only one tab
+set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 
 " Use 256 colours (Use this setting only if your terminal supports 256 colours)
 set t_Co=256
