@@ -1,12 +1,11 @@
-# Exact Solarized Light color theme for the color GNU ls utility.
+# Exact Solarized color theme for the color GNU ls utility.
 # Designed for dircolors (GNU coreutils) 5.97
 #
 # This simple theme was simultaneously designed for these terminal color schemes:
-# - Solarized dark
+# - Solarized dark  (best)
 # - Solarized light (best)
 # - default dark
 # - default light
-# with a slight optimization for Solarized Light.
 #
 # How the colors were selected:
 # - Terminal emulators often have an option typically enabled by default that makes
@@ -33,7 +32,7 @@
 # - See table below to see the assignments.
 
 
-# Insatllation instructions:
+# Installation instructions:
 # This file goes in the /etc directory, and must be world readable.
 # You can copy this file to .dir_colors in your $HOME directory to override
 # the system defaults.
@@ -98,6 +97,7 @@ TERM screen-256color-bce-s
 TERM screen-256color-italic
 TERM screen-bce
 TERM screen-w
+TERM screen.xterm-256color
 TERM screen.linux
 TERM screen.xterm-new
 TERM st
@@ -215,6 +215,7 @@ EXEC 01;31  # Unix
 .cxx 32
 .objc 32
 .sh 32
+.bash 32
 .csh 32
 .zsh 32
 .el 32
@@ -256,6 +257,7 @@ EXEC 01;31  # Unix
 .pod 32
 .tex 32
 .go 32
+.sql 32
 
 ### Multimedia formats
 
@@ -345,12 +347,18 @@ EXEC 01;31  # Unix
 .doc 31
 .docx 31
 .rtf 31
+.odt 31
 .dot 31
 .dotx 31
+.ott 31
 .xls 31
 .xlsx 31
+.ods 31
+.ots 31
 .ppt 31
 .pptx 31
+.odp 31
+.otp 31
 .fla 31
 .psd 31
 
@@ -407,12 +415,12 @@ EXEC 01;31  # Unix
 # Unimportant text files
 # For universal scheme, use brightgreen 01;32
 # For optimal on light bg (but too prominent on dark bg), use white 01;34
-#.log 01;32
-#*~ 01;32
-#*# 01;32
-.log 01;34
-*~ 01;34
-*# 01;34
+.log 01;32
+*~ 01;32
+*# 01;32
+#.log 01;34
+#*~ 01;34
+#*# 01;34
 
 # Unimportant non-text files
 # For universal scheme, use brightcyan 01;36
