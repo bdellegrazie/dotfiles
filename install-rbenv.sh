@@ -16,4 +16,5 @@ git clone https://github.com/rkh/rbenv-use.git
 git clone https://github.com/rkh/rbenv-whatis.git
 git clone https://github.com/tpope/rbenv-aliases.git
 git clone https://github.com/ianheggie/rbenv-binstubs.git
+git clone https://github.com/yyuu/rbenv-which-ext.git
 popd >/dev/null
