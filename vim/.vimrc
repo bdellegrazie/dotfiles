@@ -9,6 +9,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'puppetlabs/puppet-syntax-vim'
 Plugin 'saltstack/salt-vim'
 Plugin 'scrooloose/syntastic'
@@ -45,5 +46,13 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_puppet_checkers = ['puppet', 'puppetlint']
-let g:syntastic_puppet_puppetlint_args = "--no-80chars-check --no-documentation-check --no-class_inherits_from_params_class-check --no-relative_classname_inclusion-check"
+let g:syntastic_puppet_puppetlint_args = "--no-80chars-check --no-autoloader_layout-check --no-documentation-check --no-relative_classname_inclusion-check"
 autocmd Filetype puppet setlocal ts=2 sw=2 expandtab
+
+" Vim / Tmux integration
+let g:tmux_navigator_save_on_switch = 1
+set t_ts=k
+set t_fs=\
+auto BufEnter * :set title | let &titlestring = 'v:' . expand('%')
+auto VimLeave * :set t_ts=k\
+
