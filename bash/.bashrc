@@ -93,9 +93,12 @@ fi
 
 DEBEMAIL="brett.dellegrazie@gmail.com"
 DEBFULLNAME="Brett Delle Grazie"
-export DEBEMAIL DEBFULLNAME
+PUPPETLINT_FLAGS="--no-80chars-check --no-autoloader_layout-check --no-documentation-check --no-class_inherits_from_params_class-check"
+export DEBEMAIL DEBFULLNAME PUPPETLINT_FLAGS
 alias dquilt="quilt --quiltrc=${HOME}/.quiltrc-dpkg"
 complete -F _quilt_completion $_quilt_complete_opt dquilt
+
+export EDITOR=vim
 
 #PERL_MB_OPT="--install_base \"${HOME}/perl5\""; export PERL_MB_OPT;
 #PERL_MM_OPT="INSTALL_BASE=${HOME}/perl5"; export PERL_MM_OPT;
