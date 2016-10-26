@@ -11,8 +11,9 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'editorconfig/editorconfig-vim'
-Plugin 'puppetlabs/puppet-syntax-vim'
-Plugin 'saltstack/salt-vim'
+"Plugin 'puppetlabs/puppet-syntax-vim'
+"Plugin 'saltstack/salt-vim'
+Plugin 'pearofducks/ansible-vim'
 Plugin 'scrooloose/syntastic'
 
 call vundle#end()             " required!
