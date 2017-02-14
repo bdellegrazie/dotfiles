@@ -13,8 +13,10 @@ Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'editorconfig/editorconfig-vim'
 "Plugin 'puppetlabs/puppet-syntax-vim'
 "Plugin 'saltstack/salt-vim'
+Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'pearofducks/ansible-vim'
 Plugin 'scrooloose/syntastic'
+Plugin 'valloric/YouCompleteMe'
 
 call vundle#end()             " required!
 filetype plugin indent on     " required!

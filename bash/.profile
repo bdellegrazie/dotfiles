@@ -9,19 +9,19 @@
 #umask 022
 
 # set PATH so it includes user's private .local/bin if it exists
-[ -d "$HOME/.local/bin" ] && case ":$PATH:" in
+[[ -d "$HOME/.local/bin" ]] && case ":$PATH:" in
   *":$HOME/.local/bin:"*) :;; # already present
   *) PATH="$HOME/.local/bin:$PATH" ;;
 esac
 
 # set PATH so it includes user's private bin if it exists
-[ -d "$HOME/bin" ] && case ":$PATH:" in
+[[ -d "$HOME/bin" ]] && case ":$PATH:" in
   *":$HOME/bin:"*) :;; # already present
   *) PATH="$HOME/bin:$PATH" ;;
 esac
 
 # rbenv
-[ -d "$HOME/.rbenv/bin" ] && case ":$PATH:" in
+[[ -d "$HOME/.rbenv/bin" ]] && case ":$PATH:" in
   *":$HOME/.rbenv/bin:"*) :;;
   *) PATH="$HOME/.rbenv/bin:$PATH"
      eval "$(rbenv init -)"
@@ -29,7 +29,7 @@ esac
 esac
 
 # Go
-[ -d "$HOME/tools/go" ] && case ":$PATH:" in
+[[ -d "$HOME/tools/go" ]] && case ":$PATH:" in
   *":$HOME/tools/go/bin:"*) :;;
   *) PATH="$PATH:$HOME/tools/go/bin"
      export GOROOT=$HOME/tools/go
@@ -37,9 +37,18 @@ esac
 esac
 
 # Maven
-[ -d "$HOME/tools/maven/bin" ] && case ":$PATH:" in
+[[ -d "$HOME/tools/maven/bin" ]] && case ":$PATH:" in
   *":$HOME/tools/maven/bin:"*) :;;
   *) PATH="$PATH:$HOME/tools/maven/bin" ;;
+esac
+
+# Node Version Manager
+[[ -d "$HOME/.nvm" ]] && case "$NVM_DIR" in
+  "$HOME/.nvm") :;;
+  *) export NVM_DIR="$HOME/.nvm"
+     [[ -s "$NVM_DIR/nvm.sh" ]] && . "$NVM_DIR/nvm.sh"
+     [[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion
+  ;;
 esac
 
 # if running bash
