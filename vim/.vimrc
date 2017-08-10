@@ -52,6 +52,7 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_puppet_checkers = ['puppet', 'puppetlint']
 let g:syntastic_puppet_puppetlint_args = "--no-80chars-check --no-autoloader_layout-check --no-documentation-check --no-relative_classname_inclusion-check"
 autocmd Filetype puppet setlocal ts=2 sw=2 expandtab
+autocmd Filetype xml setlocal ts=4 sw=4 expandtab
 
 " Vim / Tmux integration
 let g:tmux_navigator_save_on_switch = 1

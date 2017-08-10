@@ -51,6 +51,13 @@ esac
   ;;
 esac
 
+[ -d "$HOME/tools/platform-tools" ] && case ":$PATH:" in
+   *":$HOME/tools/platform-tools:"*) :;;
+   *) PATH="$HOME/tools/platform-tools:$PATH" ;;
+esac
+
+# [[ -x "$HOME/bin/kubectl" ]] && . "$($HOME/bin/kubectl completion bash)"
+
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists
@@ -58,4 +65,3 @@ if [ -n "$BASH_VERSION" ]; then
 	. "$HOME/.bashrc"
     fi
 fi
-
