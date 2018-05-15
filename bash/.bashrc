@@ -103,13 +103,35 @@ complete -F _quilt_completion $_quilt_complete_opt dquilt
 
 export EDITOR=vim
 
-[[ -d ${HOME}/perl5 ]] && (
-  PATH="/home/bdellegrazie/perl5/bin${PATH:+:${PATH}}"; export PATH;
-  PERL5LIB="/home/bdellegrazie/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
-  PERL_LOCAL_LIB_ROOT="/home/bdellegrazie/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-  PERL_MB_OPT="--install_base \"/home/bdellegrazie/perl5\""; export PERL_MB_OPT;
-  PERL_MM_OPT="INSTALL_BASE=/home/bdellegrazie/perl5"; export PERL_MM_OPT;
-)
+if [[ -d ${HOME}/perl5 ]]; then
+  PATH="${HOME}/perl5/bin${PATH:+:${PATH}}"; export PATH;
+  PERL5LIB="${HOME}/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+  PERL_LOCAL_LIB_ROOT="${HOME}/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+  PERL_MB_OPT="--install_base \"${HOME}/perl5\""; export PERL_MB_OPT;
+  PERL_MM_OPT="INSTALL_BASE=${HOME}/perl5"; export PERL_MM_OPT;
+fi
 
 # added by travis gem
 [ -f /home/bdellegrazie/.travis/travis.sh ] && source /home/bdellegrazie/.travis/travis.sh
+
+# nvm
+if [[ -d $HOME/.nvm ]]; then
+  export NVM_DIR="$HOME/.nvm"
+  export NO_UPDATE_NOTIFIER=true
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+fi
+
+# GnuPG Agent with SSH support
+GPG_TTY=$(tty)
+export GPG_TTY
+
+# PyEnv https://github.com/pyenv/pyenv
+if [[ -d $HOME/.pyenv ]]; then
+  export PYENV_ROOT="$HOME/.pyenv"
+  export PATH="$PYENV_ROOT/bin:$PATH"
+  if command -v pyenv 1>/dev/null 2>&1; then
+    eval "$(pyenv init -)"
+  fi
+  [[ -d $HOME/.pyenv/plugins/pyenv-virtualenv ]] && eval "$(pyenv virtualenv-init -)"
+fi

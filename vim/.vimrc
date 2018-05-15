@@ -14,9 +14,11 @@ Plugin 'editorconfig/editorconfig-vim'
 "Plugin 'puppetlabs/puppet-syntax-vim'
 "Plugin 'saltstack/salt-vim'
 Plugin 'ekalinin/Dockerfile.vim'
+Plugin 'leafgarland/typescript-vim'
 Plugin 'pearofducks/ansible-vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'valloric/YouCompleteMe'
+Plugin 'ternjs/tern_for_vim'
 
 call vundle#end()             " required!
 filetype plugin indent on     " required!
@@ -49,10 +51,16 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-let g:syntastic_puppet_checkers = ['puppet', 'puppetlint']
-let g:syntastic_puppet_puppetlint_args = "--no-80chars-check --no-autoloader_layout-check --no-documentation-check --no-relative_classname_inclusion-check"
-autocmd Filetype puppet setlocal ts=2 sw=2 expandtab
+"let g:syntastic_puppet_checkers = ['puppet', 'puppetlint']
+"let g:syntastic_puppet_puppetlint_args = "--no-80chars-check --no-autoloader_layout-check --no-documentation-check --no-relative_classname_inclusion-check"
+"autocmd Filetype puppet setlocal ts=2 sw=2 expandtab
 autocmd Filetype xml setlocal ts=4 sw=4 expandtab
+
+if !exists("g:ycm_semantic_triggers")
+  let g:ycm_semantic_triggers = {}
+endif
+let g:ycm_semantic_triggers['typescript'] = ['.']
+
 
 " Vim / Tmux integration
 let g:tmux_navigator_save_on_switch = 1

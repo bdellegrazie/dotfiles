@@ -42,6 +42,12 @@ esac
   *) PATH="$PATH:$HOME/tools/maven/bin" ;;
 esac
 
+# Gradle
+[[ -d "$HOME/tools/gradle/bin" ]] && case ":$PATH:" in
+  *":$HOME/tools/gradle/bin:"*) :;;
+  *) PATH="$PATH:$HOME/tools/gradle/bin" ;;
+esac
+
 # Node Version Manager
 [[ -d "$HOME/.nvm" ]] && case "$NVM_DIR" in
   "$HOME/.nvm") :;;
