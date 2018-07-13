@@ -135,3 +135,6 @@ if [[ -d $HOME/.pyenv ]]; then
   fi
   [[ -d $HOME/.pyenv/plugins/pyenv-virtualenv ]] && eval "$(pyenv virtualenv-init -)"
 fi
+
+[[ -s $HOME/.asdf/asdf.sh ]] && \. "$HOME/.asdf/asdf.sh"
+[[ -s $HOME/.asdf/completions/asdf.bash ]] && \. "$HOME/.asdf/completions/asdf.bash"
