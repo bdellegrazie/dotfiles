@@ -18,7 +18,7 @@ Plugin 'leafgarland/typescript-vim'
 Plugin 'pearofducks/ansible-vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'valloric/YouCompleteMe'
-Plugin 'ternjs/tern_for_vim'
+"Plugin 'ternjs/tern_for_vim'
 
 call vundle#end()             " required!
 filetype plugin indent on     " required!
