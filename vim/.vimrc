@@ -8,7 +8,6 @@ call vundle#begin()
 " required! 
 Plugin 'VundleVim/Vundle.vim'
 
-Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'editorconfig/editorconfig-vim'
 "Plugin 'puppetlabs/puppet-syntax-vim'
@@ -33,6 +32,10 @@ filetype plugin indent on     " required!
 " see :h vundle for more details or wiki for FAQ
 " NOTE: comments after Bundle commands are not allowed.
 
+python3 from powerline.vim import setup as powerline_setup
+python3 powerline_setup()
+python3 del powerline_setup
+
 set laststatus=2 " Always display the statusline in all windows
 set showtabline=2 " Always display the tabline, even if there is only one tab
 set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
@@ -51,6 +54,7 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_yaml_checkers = ['yamllint']
 "let g:syntastic_puppet_checkers = ['puppet', 'puppetlint']
 "let g:syntastic_puppet_puppetlint_args = "--no-80chars-check --no-autoloader_layout-check --no-documentation-check --no-relative_classname_inclusion-check"
 "autocmd Filetype puppet setlocal ts=2 sw=2 expandtab

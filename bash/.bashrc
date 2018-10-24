@@ -43,16 +43,14 @@ if [ $RESULT -eq 0 ]; then
   ${POWERLINE_DAEMON} -q
   POWERLINE_BASH_CONTINUATION=1
   POWERLINE_BASH_SELECT=1
-  if [ -f ~/.vim/bundle/powerline/powerline/bindings/bash/powerline.sh ]; then
-    source ~/.vim/bundle/powerline/powerline/bindings/bash/powerline.sh
-  elif [ -f /usr/share/powerline/bindings/bash/powerline.sh ]; then
+  if [ -f /usr/share/powerline/bindings/bash/powerline.sh ]; then
     source /usr/share/powerline/bindings/bash/powerline.sh
   fi
 fi
 
 # enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+if [[ -x /usr/bin/dircolors ]]; then
+    ([[ -r ~/.dircolors ]] && eval "$(dircolors -b ~/.dircolors)") || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
     #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
@@ -79,9 +77,8 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
+# shellcheck source=/dev/null
+[[ -f ~/.bash_aliases ]] && source ~/.bash_aliases
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -126,6 +123,9 @@ fi
 GPG_TTY=$(tty)
 export GPG_TTY
 
+[[ -s $HOME/.asdf/asdf.sh ]] && \. "$HOME/.asdf/asdf.sh"
+[[ -s $HOME/.asdf/completions/asdf.bash ]] && \. "$HOME/.asdf/completions/asdf.bash"
+
 # PyEnv https://github.com/pyenv/pyenv
 if [[ -d $HOME/.pyenv ]]; then
   export PYENV_ROOT="$HOME/.pyenv"
@@ -136,5 +136,4 @@ if [[ -d $HOME/.pyenv ]]; then
   [[ -d $HOME/.pyenv/plugins/pyenv-virtualenv ]] && eval "$(pyenv virtualenv-init -)"
 fi
 
-[[ -s $HOME/.asdf/asdf.sh ]] && \. "$HOME/.asdf/asdf.sh"
-[[ -s $HOME/.asdf/completions/asdf.bash ]] && \. "$HOME/.asdf/completions/asdf.bash"
+export PIPENV_VENV_IN_PROJECT=0
