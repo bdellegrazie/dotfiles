@@ -93,11 +93,11 @@ fi
 
 DEBEMAIL="brett.dellegrazie@gmail.com"
 DEBFULLNAME="Brett Delle Grazie"
-PUPPETLINT_FLAGS="--no-80chars-check --no-autoloader_layout-check --no-documentation-check --no-class_inherits_from_params_class-check"
-export DEBEMAIL DEBFULLNAME PUPPETLINT_FLAGS
+export DEBEMAIL DEBFULLNAME
 alias dquilt="quilt --quiltrc=${HOME}/.quiltrc-dpkg"
 complete -F _quilt_completion $_quilt_complete_opt dquilt
 
+export PUPPETLINT_FLAGS="--no-80chars-check --no-autoloader_layout-check --no-documentation-check --no-class_inherits_from_params_class-check"
 export EDITOR=vim
 
 if [[ -d ${HOME}/perl5 ]]; then
@@ -109,7 +109,7 @@ if [[ -d ${HOME}/perl5 ]]; then
 fi
 
 # added by travis gem
-[ -f /home/bdellegrazie/.travis/travis.sh ] && source /home/bdellegrazie/.travis/travis.sh
+[ -f $HOME/.travis/travis.sh ] && source $HOME/.travis/travis.sh
 
 # nvm
 if [[ -d $HOME/.nvm ]]; then
@@ -135,5 +135,4 @@ if [[ -d $HOME/.pyenv ]]; then
   fi
   [[ -d $HOME/.pyenv/plugins/pyenv-virtualenv ]] && eval "$(pyenv virtualenv-init -)"
 fi
-
 export PIPENV_VENV_IN_PROJECT=0
