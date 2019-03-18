@@ -1,30 +1,26 @@
 {
 	"dividers": {
 		"left": {
-			"hard": " ",
-			"soft": " "
+			"hard": "▌ ",
+			"soft": "│ "
 		},
 		"right": {
-			"hard": " ",
-			"soft": " "
+			"hard": " ▐",
+			"soft": " │"
 		}
 	},
 	"spaces": 1,
 	"segment_data": {
 		"branch": {
-			"before": " "
+			"before": "⎇ "
 		},
 		"stash": {
-			"before": "⌆ "
+			"before": "⌆"
 		},
 		"cwd": {
 			"args": {
 				"ellipsis": "⋯"
 			}
-		},
-
-		"line_current_symbol": {
-			"contents": " "
 		},
 		"player": {
 			"args": {
@@ -35,6 +31,10 @@
 					"stop":     "■"
 				}
 			}
+		},
+
+		"line_current_symbol": {
+			"contents": "␤ "
 		},
 
 		"time": {
@@ -48,7 +48,7 @@
 			}
 		},
 		"powerline.segments.common.net.hostname": {
-			"before": " "
+			"before": "⌂ "
 		},
 		"powerline.segments.common.bat.battery": {
 			"args": {
@@ -115,8 +115,7 @@
 					"r":  "PROMPT",
 					"rm": "-MORE-",
 					"r?": "CNFIRM",
-					"!":  "!SHELL",
-					"t":  "TERM  "
+					"!":  "!SHELL"
 				}
 			}
 		},
@@ -130,7 +129,7 @@
 		},
 		"powerline.segments.vim.readonly_indicator": {
 			"args": {
-				"text": ""
+				"text": "⊗"
 			}
 		},
 		"powerline.segments.vim.modified_indicator": {

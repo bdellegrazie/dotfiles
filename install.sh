@@ -20,8 +20,8 @@ sudo apt-get install -y \
  vim-addon-manager \
  vim-editorconfig \
  vim-syntax-docker
-#git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-#vim +BundleInstall +qall
 stow -t ~ bash quilt tmux vim
-stow -t ~/.config powerline/.config
-fc-cache -vf ~/.fonts
+stow -t ~/.config powerline
+vim-addons install powerline
+systemctl --user enable powerline-daemon.service
+systemctl --user start powerline-daemon.service
