@@ -22,6 +22,6 @@ sudo apt-get install -y \
  vim-syntax-docker
 stow -t ~ bash quilt tmux vim
 stow -t ~/.config powerline
-vim-addons install powerline
+vim-addons install dockerfile editorconfig powerline
 systemctl --user enable powerline-daemon.service
 systemctl --user start powerline-daemon.service
