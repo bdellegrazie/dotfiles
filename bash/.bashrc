@@ -139,9 +139,20 @@ if [[ -d $HOME/.nvm ]]; then
   [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
 fi
 
+# asdf
 [[ -s $HOME/.asdf/asdf.sh ]] && . "$HOME/.asdf/asdf.sh"
 [[ -s $HOME/.asdf/completions/asdf.bash ]] && . "$HOME/.asdf/completions/asdf.bash"
 [[ -s $HOME/.asdf/shims/kubectl ]] && source <($HOME/.asdf/shims/kubectl completion bash)
+[[ -s $HOME/.asdf/shims/helm ]] && source <($HOME/.asdf/shims/helm completion bash)
+
+# aws
+[[ -s $HOME/.local/bin/aws_completer ]] && complete -C "$HOME/.local/bin/aws_completer" aws
+
+# linkerd
+[[ -d "$HOME/.linkerd2/bin" ]] && case ":$PATH:" in
+  *":$HOME/.linkerd2/bin:"*) :;; # already present
+  *) export PATH="$PATH:$HOME/.linkerd2/bin" ;;
+esac
 
 # PyEnv https://github.com/pyenv/pyenv
 if [[ -d $HOME/.pyenv ]]; then
@@ -155,4 +166,4 @@ fi
 
 export POWERLINE_BASH_CONTINUATION=1 POWERLINE_BASH_SELECT=1
 [[ -f /usr/share/powerline/bindings/bash/powerline.sh ]] && . /usr/share/powerline/bindings/bash/powerline.sh
-export EDITOR=vim PIPENV_VENV_IN_PROJECT=0
+export EDITOR=vim PIPENV_VENV_IN_PROJECT=0 DOTNET_CLI_TELEMETRY_OPTOUT=1
