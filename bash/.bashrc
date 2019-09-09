@@ -142,8 +142,10 @@ fi
 # asdf
 [[ -s $HOME/.asdf/asdf.sh ]] && . "$HOME/.asdf/asdf.sh"
 [[ -s $HOME/.asdf/completions/asdf.bash ]] && . "$HOME/.asdf/completions/asdf.bash"
-[[ -s $HOME/.asdf/shims/kubectl ]] && source <($HOME/.asdf/shims/kubectl completion bash)
-[[ -s $HOME/.asdf/shims/helm ]] && source <($HOME/.asdf/shims/helm completion bash)
+[[ -s $HOME/.asdf/shims/eksctl ]] && . <($HOME/.asdf/shims/eksctl completion bash)
+[[ -s $HOME/.asdf/shims/kubectl ]] && . <($HOME/.asdf/shims/kubectl completion bash)
+[[ -s $HOME/.asdf/shims/helm ]] && . <($HOME/.asdf/shims/helm completion bash)
+[[ -s $HOME/.asdf/shims/minikube ]] && . <($HOME/.asdf/shims/minikube completion bash)
 
 # aws
 [[ -s $HOME/.local/bin/aws_completer ]] && complete -C "$HOME/.local/bin/aws_completer" aws
@@ -163,6 +165,10 @@ if [[ -d $HOME/.pyenv ]]; then
   fi
   [[ -d $HOME/.pyenv/plugins/pyenv-virtualenv ]] && eval "$(pyenv virtualenv-init -)"
 fi
+
+[[ -s $HOME/.local/bin/pipenv ]] && eval "$(pipenv --completion)"
+
+eval "$(direnv hook bash)"
 
 export POWERLINE_BASH_CONTINUATION=1 POWERLINE_BASH_SELECT=1
 [[ -f /usr/share/powerline/bindings/bash/powerline.sh ]] && . /usr/share/powerline/bindings/bash/powerline.sh

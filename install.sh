@@ -13,7 +13,7 @@ sudo apt-get install -y \
  python3-psutil \
  python-pygit2 \
  python3-pygit2 \
- python-venv \
+ python-virtualenv \
  python3-venv \
  stow \
  vim-nox \
