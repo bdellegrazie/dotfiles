@@ -124,10 +124,6 @@ export DEBEMAIL DEBFULLNAME
 alias dquilt="quilt --quiltrc=${HOME}/.quiltrc-dpkg"
 complete -F _quilt_completion $_quilt_complete_opt dquilt
 
-# GnuPG Agent with SSH support
-GPG_TTY=$(tty)
-export GPG_TTY
-
 # added by travis gem
 [[ -f /home/bdellegrazie/.travis/travis.sh ]] && source /home/bdellegrazie/.travis/travis.sh
 

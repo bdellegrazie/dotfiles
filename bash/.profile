@@ -20,6 +20,10 @@ esac
   *) PATH="$HOME/.local/bin:$PATH" ;;
 esac
 
+# GnuPG Agent with SSH support
+GPG_TTY=$(tty)
+export GPG_TTY
+
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists
