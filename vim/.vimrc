@@ -6,6 +6,10 @@ set t_Co=256
 set pastetoggle=<F2>
 autocmd Filetype xml setlocal ts=4 sw=4 expandtab
 
+syntax enable
+set background=dark
+colorscheme solarized
+
 " powerline config
 let g:powerline_pycmd='py3'
 set laststatus=2 " Always display the statusline in all windows
