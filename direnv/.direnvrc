@@ -1,0 +1,18 @@
+set -e
+
+use_asdf() {
+  # Load if not loaded already
+  if [[ ! -v ASDF_DIR ]]; then
+    if [[ -s "$HOME/.asdf/asdf.sh" ]]; then
+      . "$HOME/.asdf/asdf.sh"
+      if [[ -s $HOME/.asdf/completions/asdf.bash ]]; then
+        . "$HOME/.asdf/completions/asdf.bash"
+      fi
+    fi
+  fi
+}
+
+asdf() {
+  unset asdf
+  asdf "$@"
+}
