@@ -138,10 +138,10 @@ fi
 # asdf
 [[ -s $HOME/.asdf/asdf.sh ]] && . "$HOME/.asdf/asdf.sh"
 [[ -s $HOME/.asdf/completions/asdf.bash ]] && . "$HOME/.asdf/completions/asdf.bash"
-[[ -s $HOME/.asdf/shims/eksctl ]] && . <($HOME/.asdf/shims/eksctl completion bash)
-[[ -s $HOME/.asdf/shims/kubectl ]] && . <($HOME/.asdf/shims/kubectl completion bash)
-[[ -s $HOME/.asdf/shims/helm ]] && . <($HOME/.asdf/shims/helm completion bash)
-[[ -s $HOME/.asdf/shims/minikube ]] && . <($HOME/.asdf/shims/minikube completion bash)
+#[[ -s $HOME/.asdf/shims/eksctl ]] && . <($HOME/.asdf/shims/eksctl completion bash)
+#[[ -s $HOME/.asdf/shims/kubectl ]] && . <($HOME/.asdf/shims/kubectl completion bash)
+#[[ -s $HOME/.asdf/shims/helm ]] && . <($HOME/.asdf/shims/helm completion bash)
+#[[ -s $HOME/.asdf/shims/minikube ]] && . <($HOME/.asdf/shims/minikube completion bash)
 
 # aws
 [[ -s $HOME/.local/bin/aws_completer ]] && complete -C "$HOME/.local/bin/aws_completer" aws
