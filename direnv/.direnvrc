@@ -16,3 +16,15 @@ asdf() {
   unset asdf
   asdf "$@"
 }
+
+use_sdk() {
+  # Load if not loaded already
+  if [[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]]; then
+    . "${SDKMAN_DIR}/bin/sdkman-init.sh"
+  fi
+}
+
+sdk() {
+  unset sdk
+  sdk "$@"
+}
