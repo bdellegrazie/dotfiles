@@ -171,5 +171,5 @@ export POWERLINE_BASH_CONTINUATION=1 POWERLINE_BASH_SELECT=1
 export EDITOR=vim PIPENV_VENV_IN_PROJECT=0 DOTNET_CLI_TELEMETRY_OPTOUT=1
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/home/bdellegrazie/.sdkman"
-[[ -s "/home/bdellegrazie/.sdkman/bin/sdkman-init.sh" ]] && source "/home/bdellegrazie/.sdkman/bin/sdkman-init.sh"
+export SDKMAN_DIR="${HOME}/.sdkman"
+[[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
