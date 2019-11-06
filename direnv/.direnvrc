@@ -17,6 +17,17 @@ asdf() {
   asdf "$@"
 }
 
+use_pipx() {
+  if ! has pipx; then
+    if has python3; then
+      python3 -m pip install --user pipx
+      python3 -m pipx ensurepath
+    else
+      echo "Python 3 version 3.6 or higher required for PipX"
+    fi
+  fi
+}
+
 use_sdk() {
   # Load if not loaded already
   if [[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]]; then
