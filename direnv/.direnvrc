@@ -17,6 +17,31 @@ asdf() {
   asdf "$@"
 }
 
+use_sdk() {
+  if [[ -s "${HOME}/.sdkman/bin/sdkman-init.sh" ]]; then
+    # shellcheck disable=SC1090
+    source "${HOME}/.sdkman/bin/sdkman-init.sh"
+  fi
+  if [[ $# -eq 2 ]]; then
+    local candidate="$1"
+    local candidate_version="$2"
+    if ! SDK_OFFLINE_MODE=true sdk use "${candidate}" "${candidate_version}"; then
+      sdk install "${candidate}" "${candidate_version}" < /dev/null
+      SDK_OFFLINE_MODE=true sdk use "${candidate}" "${candidate_version}"
+    fi
+  else
+    echo "ERROR: Wrong number of parameters, expected:" >&2
+    echo "use sdk [CANDIDATE] [VERSION]" >&2
+    return 1
+  fi
+}
+
+use_pre-commit() {
+  if ! [ -f "$(git rev-parse --show-toplevel)/.git/hooks/pre-commit" ]; then
+    pre-commit install --install-hooks
+  fi
+}
+
 use_pipx() {
   if ! has pipx; then
     if has python3; then
@@ -28,14 +53,3 @@ use_pipx() {
   fi
 }
 
-use_sdk() {
-  # Load if not loaded already
-  if [[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]]; then
-    . "${SDKMAN_DIR}/bin/sdkman-init.sh"
-  fi
-}
-
-sdk() {
-  unset sdk
-  sdk "$@"
-}
