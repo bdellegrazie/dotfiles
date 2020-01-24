@@ -164,12 +164,12 @@ fi
 
 [[ -s $HOME/.local/bin/pipenv ]] && eval "$(pipenv --completion)"
 
-eval "$(direnv hook bash)"
-
 PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: $(dirs +0)\007"'
 export POWERLINE_BASH_CONTINUATION=1 POWERLINE_BASH_SELECT=1
 [[ -f /usr/share/powerline/bindings/bash/powerline.sh ]] && . /usr/share/powerline/bindings/bash/powerline.sh
 export EDITOR=vim PIPENV_VENV_IN_PROJECT=0 DOTNET_CLI_TELEMETRY_OPTOUT=1
+
+eval "$(asdf exec direnv hook bash)"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="${HOME}/.sdkman"

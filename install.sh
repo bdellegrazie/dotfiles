@@ -15,8 +15,8 @@ sudo apt-get install -y \
  vim-addon-manager \
  vim-editorconfig \
  vim-syntax-docker
-stow -t ~ direnv bash quilt tmux vim
-stow -t ~/.config powerline
+stow -t ~ bash quilt tmux vim
+stow -t ~/.config powerline direnv
 vim-addons install dockerfile editorconfig powerline
 systemctl --user enable powerline-daemon.service
 systemctl --user start powerline-daemon.service
