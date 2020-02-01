@@ -127,40 +127,12 @@ complete -F _quilt_completion $_quilt_complete_opt dquilt
 # added by travis gem
 [[ -f /home/bdellegrazie/.travis/travis.sh ]] && source /home/bdellegrazie/.travis/travis.sh
 
-# nvm
-if [[ -d $HOME/.nvm ]]; then
-  export NVM_DIR="$HOME/.nvm"
-  export NO_UPDATE_NOTIFIER=true
-  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-  [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
-fi
-
 # asdf
 [[ -s $HOME/.asdf/asdf.sh ]] && . "$HOME/.asdf/asdf.sh"
 [[ -s $HOME/.asdf/completions/asdf.bash ]] && . "$HOME/.asdf/completions/asdf.bash"
-#[[ -s $HOME/.asdf/shims/eksctl ]] && . <($HOME/.asdf/shims/eksctl completion bash)
-#[[ -s $HOME/.asdf/shims/kubectl ]] && . <($HOME/.asdf/shims/kubectl completion bash)
-#[[ -s $HOME/.asdf/shims/helm ]] && . <($HOME/.asdf/shims/helm completion bash)
-#[[ -s $HOME/.asdf/shims/minikube ]] && . <($HOME/.asdf/shims/minikube completion bash)
 
 # aws
 [[ -s $HOME/.local/bin/aws_completer ]] && complete -C "$HOME/.local/bin/aws_completer" aws
-
-# linkerd
-[[ -d "$HOME/.linkerd2/bin" ]] && case ":$PATH:" in
-  *":$HOME/.linkerd2/bin:"*) :;; # already present
-  *) export PATH="$PATH:$HOME/.linkerd2/bin" ;;
-esac
-
-# PyEnv https://github.com/pyenv/pyenv
-if [[ -d $HOME/.pyenv ]]; then
-  export PYENV_ROOT="$HOME/.pyenv"
-  export PATH="$PYENV_ROOT/bin:$PATH"
-  if command -v pyenv 1>/dev/null 2>&1; then
-    eval "$(pyenv init -)"
-  fi
-  [[ -d $HOME/.pyenv/plugins/pyenv-virtualenv ]] && eval "$(pyenv virtualenv-init -)"
-fi
 
 [[ -s $HOME/.local/bin/pipenv ]] && eval "$(pipenv --completion)"
 
