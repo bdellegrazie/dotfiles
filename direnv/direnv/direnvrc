@@ -49,7 +49,10 @@ use_pipx() {
       python3 -m pipx ensurepath
     else
       echo "Python 3 version 3.6 or higher required for PipX"
+      return 1
     fi
+  else
+    return 0
   fi
 }
 
