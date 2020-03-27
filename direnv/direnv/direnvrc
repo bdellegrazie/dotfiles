@@ -2,19 +2,21 @@ set -e
 
 use_asdf() {
   # Load if not loaded already
-  if [[ ! -v ASDF_DIR ]]; then
-    if [[ -s "$HOME/.asdf/asdf.sh" ]]; then
-      . "$HOME/.asdf/asdf.sh"
-      if [[ -s $HOME/.asdf/completions/asdf.bash ]]; then
-        . "$HOME/.asdf/completions/asdf.bash"
-      fi
+  if [[ -z "${ASDF_DIR}" ]]; then
+    local __asdf_dir
+    case "$(uname)" in
+      Darwin*)
+        __asdf_dir="$(brew --prefix asdf)"
+        ;;
+      *)
+        __asdf_dir="${HOME}/.asdf"
+        ;;
+    esac
+    if [[ -s "${__asdf_dir}/asdf.sh" ]]; then
+      # shellcheck disable=SC1090
+      source "${__asdf_dir}/asdf.sh"
     fi
   fi
-}
-
-asdf() {
-  unset asdf
-  asdf "$@"
 }
 
 use_sdk() {
@@ -37,22 +39,64 @@ use_sdk() {
 }
 
 use_pre-commit() {
-  if ! [ -f "$(git rev-parse --show-toplevel)/.git/hooks/pre-commit" ]; then
+  if ! [[ -f "$(git rev-parse --show-toplevel)/.git/hooks/pre-commit" ]]; then
     pre-commit install --install-hooks
   fi
 }
 
 use_pipx() {
-  if ! has pipx; then
-    if has python3; then
-      python3 -m pip install --user pipx
-      python3 -m pipx ensurepath
-    else
-      echo "Python 3 version 3.6 or higher required for PipX"
-      return 1
+  if ! has python3; then
+    echo "Python 3 version 3.6 or higher required for PipX"
+    return 1
+  fi
+
+  if [[ -n "${VIRTUAL_ENV}" ]]; then
+    if ! python3 -m pip show -qq pipx; then
+      echo "Installing PipX into virtual env"
+      python3 -m pip install --upgrade pip setuptools pipx
     fi
   else
-    return 0
+    if ! has easy_install3; then
+      # `setuptools` is not a direct dependency of `pipx`, but it is required for correct operation
+      python3 -m pip install --user setuptools
+    fi
+    if ! has pipx; then
+      echo "Installing PipX for the current user"
+      python3 -m pip install --user pipx
+    fi
   fi
+
+  # shellcheck disable=SC2155
+  export PIPX_HOME="$(direnv_layout_dir)/pipx"
+  export PIPX_BIN_DIR="${PIPX_HOME}/bin"
+  PATH_add "${PIPX_BIN_DIR}"
+}
+
+realpath() {
+  [[ $1 == /* ]] && echo "$1" || echo "$PWD/${1#./}"
+}
+
+layout_python-venv() {
+  local python="${1:-python3}"
+  [[ $# -gt 0 ]] && shift
+  unset PYTHONHOME
+  if [[ -n "$VIRTUAL_ENV" ]]; then
+    VIRTUAL_ENV="$(realpath "${VIRTUAL_ENV}")"
+  else
+    local python_version
+    python_version="$("$python" -c "import platform; print(platform.python_version())")"
+    if [[ -z "$python_version" ]]; then
+      log_error "Could not detect Python version"
+      return 1
+    fi
+    VIRTUAL_ENV="$(direnv_layout_dir)/python-$python_version-venv"
+  fi
+  export VIRTUAL_ENV
+  if [[ ! -d "$VIRTUAL_ENV" ]]; then
+    log_status "no venv found; creating $VIRTUAL_ENV"
+    "$python" -m venv --system-site-packages "$VIRTUAL_ENV"
+  fi
+
+  PATH_add "${VIRTUAL_ENV}/bin"
 }
 
