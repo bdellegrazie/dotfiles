@@ -20,12 +20,6 @@ esac
   *) PATH="$HOME/.local/bin:$PATH" ;;
 esac
 
-# add poetry to path
-[[ -d "$HOME/.poetry/bin" ]] && case ":$PATH:" in
-  *":$HOME/.poetry/bin:"*) :;; # already present
-  *) PATH="$HOME/.poetry/bin:$PATH" ;;
-esac
-
 # GnuPG Agent with SSH support
 GPG_TTY=$(tty)
 export GPG_TTY

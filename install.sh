@@ -1,6 +1,5 @@
 #!/bin/bash -ex
 sudo apt-get install -y \
- direnv \
  fonts-powerline \
  git \
  powerline \
