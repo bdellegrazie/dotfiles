@@ -19,6 +19,23 @@ use_asdf() {
   fi
 }
 
+asdf_has() {
+  if [[ $# -lt 1 ]]; then
+    echo "ERROR: Wrong number of parameters, expected:" >&2
+    echo "       asdf_has [PLUGIN]" >&2
+    return 1
+  fi
+  local _plugin="$1"
+  if [[ -d "${ASDF_DIR}/plugins/${_plugin}" ]]; then
+    return 0
+  elif [[ -n "${ASDF_DATA_DIR}" ]] && [[ -d "${ASDF_DATA_DIR}/plugins/${_plugin}" ]]; then
+    return 0
+  elif [[ -d "${HOME}/.asdf/plugins/${_plugin}" ]]; then
+    return 0
+  fi
+  return 1
+}
+
 use_sdk() {
   if [[ -s "${HOME}/.sdkman/bin/sdkman-init.sh" ]]; then
     # shellcheck disable=SC1090
@@ -58,7 +75,7 @@ use_pipx() {
   else
     if ! has easy_install3; then
       # `setuptools` is not a direct dependency of `pipx`, but it is required for correct operation
-      python3 -m pip install --user setuptools
+      python3 -m pip install --user setuptools wheel
     fi
     if ! has pipx; then
       echo "Installing PipX for the current user"
