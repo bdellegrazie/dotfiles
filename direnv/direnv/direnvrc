@@ -26,9 +26,9 @@ asdf_has() {
     return 1
   fi
   local _plugin="$1"
-  if [[ -d "${ASDF_DIR}/plugins/${_plugin}" ]]; then
+  if [[ -n "${ASDF_DATA_DIR}" ]] && [[ -d "${ASDF_DATA_DIR}/plugins/${_plugin}" ]]; then
     return 0
-  elif [[ -n "${ASDF_DATA_DIR}" ]] && [[ -d "${ASDF_DATA_DIR}/plugins/${_plugin}" ]]; then
+  elif [[ -d "${ASDF_DIR}/plugins/${_plugin}" ]]; then
     return 0
   elif [[ -d "${HOME}/.asdf/plugins/${_plugin}" ]]; then
     return 0
@@ -53,40 +53,6 @@ use_sdk() {
     echo "use sdk [CANDIDATE] [VERSION]" >&2
     return 1
   fi
-}
-
-use_pre-commit() {
-  if ! [[ -f "$(git rev-parse --show-toplevel)/.git/hooks/pre-commit" ]]; then
-    pre-commit install --install-hooks
-  fi
-}
-
-use_pipx() {
-  if ! has python3; then
-    echo "Python 3 version 3.6 or higher required for PipX"
-    return 1
-  fi
-
-  if [[ -n "${VIRTUAL_ENV}" ]]; then
-    if ! python3 -m pip show -qq pipx; then
-      echo "Installing PipX into virtual env"
-      python3 -m pip install --upgrade pip setuptools pipx
-    fi
-  else
-    if ! has easy_install3; then
-      # `setuptools` is not a direct dependency of `pipx`, but it is required for correct operation
-      python3 -m pip install --user setuptools wheel
-    fi
-    if ! has pipx; then
-      echo "Installing PipX for the current user"
-      python3 -m pip install --user pipx
-    fi
-  fi
-
-  # shellcheck disable=SC2155
-  export PIPX_HOME="$(direnv_layout_dir)/pipx"
-  export PIPX_BIN_DIR="${PIPX_HOME}/bin"
-  PATH_add "${PIPX_BIN_DIR}"
 }
 
 realpath() {
@@ -115,5 +81,65 @@ layout_python-venv() {
   fi
 
   PATH_add "${VIRTUAL_ENV}/bin"
+}
+
+use_pre-commit() {
+  if ! [[ -f "$(git rev-parse --show-toplevel)/.git/hooks/pre-commit" ]]; then
+    pre-commit install --install-hooks
+  fi
+}
+
+use_pipx() {
+  if ! has python3; then
+    echo "Python 3 version 3.6 or higher required for PipX"
+    return 1
+  fi
+
+  if [[ -n "${VIRTUAL_ENV}" ]]; then
+    if ! python3 -m pip show -qq pipx; then
+      echo "Installing PipX into virtual env"
+      python3 -m pip install --upgrade pip pipx setuptools wheel
+    fi
+  else
+    if ! has easy_install3; then
+      # `setuptools` is not a direct dependency of `pipx`, but it is required for correct operation
+      python3 -m pip install --user setuptools wheel
+    fi
+    if ! has pipx; then
+      echo "Installing PipX for the current user"
+      python3 -m pip install --user pipx
+    fi
+  fi
+
+  # shellcheck disable=SC2155
+  export PIPX_HOME="$(direnv_layout_dir)/pipx"
+  export PIPX_BIN_DIR="${PIPX_HOME}/bin"
+  PATH_add "${PIPX_BIN_DIR}"
+
+  ## Periodic PipX package upgrades
+  mkdir -p "${PIPX_HOME}"
+  local -r _update_marker="${PIPX_HOME}/.lastupdated"
+  local _last_updated
+  local _now
+  local _update_interval=$((7 * 24 * 60 * 60)) # One week
+  if [[ -f "${_update_marker}" ]]; then
+    case "$(uname)" in
+      Darwin*)
+        # MacOS is "special"
+        _last_updated="$(stat -f '%m' "${_update_marker}")"
+        ;;
+      *)
+        _last_updated="$(stat --format='%Y' "${_update_marker}")"
+        ;;
+    esac
+    _now="$(date '+%s')"
+    if [[ $((_now - _last_updated)) -gt $_update_interval ]]; then
+      echo "Upgrading PipX packages..."
+      pipx upgrade-all
+      touch "${_update_marker}"
+    fi
+  else
+    touch "${_update_marker}"
+  fi
 }
 
