@@ -128,8 +128,8 @@ complete -F _quilt_completion $_quilt_complete_opt dquilt
 [[ -f /home/bdellegrazie/.travis/travis.sh ]] && source /home/bdellegrazie/.travis/travis.sh
 
 # asdf
-[[ -s $HOME/.asdf/asdf.sh ]] && . "$HOME/.asdf/asdf.sh"
-[[ -s $HOME/.asdf/completions/asdf.bash ]] && . "$HOME/.asdf/completions/asdf.bash"
+[[ -s "$HOME/.asdf/asdf.sh" ]] && . "$HOME/.asdf/asdf.sh"
+[[ -s "$HOME/.asdf/completions/asdf.bash" ]] && . "$HOME/.asdf/completions/asdf.bash"
 
 # aws
 [[ -s $HOME/.local/bin/aws_completer ]] && complete -C "$HOME/.local/bin/aws_completer" aws
@@ -143,6 +143,3 @@ export EDITOR=vim PIPENV_VENV_IN_PROJECT=0 DOTNET_CLI_TELEMETRY_OPTOUT=1
 
 eval "$(asdf exec direnv hook bash)"
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="${HOME}/.sdkman"
-[[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"

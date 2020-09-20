@@ -83,9 +83,35 @@ layout_python-venv() {
   PATH_add "${VIRTUAL_ENV}/bin"
 }
 
+layout_poetry() {
+  if [[ ! -f pyproject.toml ]]; then
+    log_error 'No pyproject.toml found.  Use `poetry new` or `poetry init` to create one first.'
+    exit 2
+  fi
+
+  local VENV=$(poetry env list --full-path | grep Activated | cut -d' ' -f1)
+  if [[ -z $VENV || ! -d $VENV/bin ]]; then
+    log_error 'No created poetry virtual environment found.  Use `poetry install` to create one first.'
+    exit 2
+  fi
+  VENV=$VENV/bin
+  export VIRTUAL_ENV=$(echo "$VENV" | rev | cut -d'/' -f2- | rev)
+  export POETRY_ACTIVE=1
+  PATH_add "$VENV"
+}
+
 use_pre-commit() {
   if ! [[ -f "$(git rev-parse --show-toplevel)/.git/hooks/pre-commit" ]]; then
     pre-commit install --install-hooks
+    pre-commit install --install-hooks --hook-type commit-msg
+  fi
+}
+
+use_git-message-template() {
+  if [[ -r "$(git rev-parse --show-toplevel)/.gitmessage" ]]; then
+    if ! git config --local --get commit.template ; then
+      git config --local --add commit.template .gitmessage
+    fi
   fi
 }
 
