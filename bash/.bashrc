@@ -124,22 +124,13 @@ export DEBEMAIL DEBFULLNAME
 alias dquilt="quilt --quiltrc=${HOME}/.quiltrc-dpkg"
 complete -F _quilt_completion $_quilt_complete_opt dquilt
 
-# added by travis gem
-[[ -f /home/bdellegrazie/.travis/travis.sh ]] && source /home/bdellegrazie/.travis/travis.sh
-
-# asdf
-[[ -s "$HOME/.asdf/asdf.sh" ]] && . "$HOME/.asdf/asdf.sh"
-[[ -s "$HOME/.asdf/completions/asdf.bash" ]] && . "$HOME/.asdf/completions/asdf.bash"
-
-# aws
-[[ -s $HOME/.local/bin/aws_completer ]] && complete -C "$HOME/.local/bin/aws_completer" aws
-
-[[ -s $HOME/.local/bin/pipenv ]] && eval "$(pipenv --completion)"
-
 PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: $(dirs +0)\007"'
+export EDITOR=vim PIPENV_VENV_IN_PROJECT=0 DOTNET_CLI_TELEMETRY_OPTOUT=1
 export POWERLINE_BASH_CONTINUATION=1 POWERLINE_BASH_SELECT=1
 [[ -f /usr/share/powerline/bindings/bash/powerline.sh ]] && . /usr/share/powerline/bindings/bash/powerline.sh
-export EDITOR=vim PIPENV_VENV_IN_PROJECT=0 DOTNET_CLI_TELEMETRY_OPTOUT=1
 
+[[ -s "$HOME/.asdf/asdf.sh" ]] && . "$HOME/.asdf/asdf.sh"
+[[ -s "$HOME/.asdf/completions/asdf.bash" ]] && . "$HOME/.asdf/completions/asdf.bash"
 eval "$(asdf exec direnv hook bash)"
+direnv() { asdf exec direnv "$@"; }
 

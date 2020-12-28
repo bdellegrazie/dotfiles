@@ -8,22 +8,6 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
-# set PATH so it includes user's private bin if it exists
-[[ -d "$HOME/bin" ]] && case ":$PATH:" in
-  *":$HOME/bin:"*) :;; # already present
-  *) PATH="$HOME/bin:$PATH" ;;
-esac
-
-# set PATH so it includes user's private .local/bin if it exists
-[[ -d "$HOME/.local/bin" ]] && case ":$PATH:" in
-  *":$HOME/.local/bin:"*) :;; # already present
-  *) PATH="$HOME/.local/bin:$PATH" ;;
-esac
-
-# GnuPG Agent with SSH support
-GPG_TTY=$(tty)
-export GPG_TTY
-
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists
@@ -31,3 +15,18 @@ if [ -n "$BASH_VERSION" ]; then
 	. "$HOME/.bashrc"
     fi
 fi
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+
+# GnuPG Agent with SSH support
+GPG_TTY=$(tty)
+export GPG_TTY
+
